@@ -1,4 +1,5 @@
 var express = require('express');
+const res = require('express/lib/response');
 var app = express();
 require('dotenv').config();
 
@@ -24,12 +25,13 @@ require('dotenv').config();
 
 
 app.use("/now", function(req, res, next){
-  req.time = new Date().toString();
   next();
-},
+}, 
   function(req, res){
-    res.send({
-      time: req.time
+    var time = new Date().toString();
+    console.log('time' + time);
+    res.json({
+      'time': time
     });
   }
 );
