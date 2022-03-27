@@ -58,16 +58,9 @@ app.get("/json", function(req, res) {
   }
 });
 
-var delayInMilliseconds = 1000; //1 second
-
-app.get('/now', (req, res, next) => {
-     req.time = new Date().toString();
-     next()
-}, (req, res) => {
-setTimeout(function() {
-  //your code to be executed after 1 second
-    res.json({
-      'time': req.time
-    })
-}, delayInMilliseconds);
+app.get("/:word/echo", function(req, res){
+  const { word } = req.params;
+  res.json({
+    echo: word
+  });
 });
