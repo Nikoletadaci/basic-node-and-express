@@ -64,13 +64,12 @@ function getTheCurrentTimeString(){
 
 
 app.use("/now", function(req, res, next){
-  req.time = getTheCurrentTimeString()
+  req.time = getTheCurrentTimeString();
   next();
 }, 
   function(req, res){
-    console.log('time ' + time);
     res.json({
-      time: req.time
+      'time': req.time
     });
   }
 );
