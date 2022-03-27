@@ -24,18 +24,6 @@ require('dotenv').config();
 
 
 
-app.use("/now", function(req, res, next){
-  next();
-}, 
-  function(req, res){
-    var time = new Date().toString();
-    console.log('time ' + time);
-    res.json({
-      'time': time
-    });
-  }
-);
-
 
 app.use(function(req, res, next){
   
@@ -69,3 +57,20 @@ app.get("/json", function(req, res) {
     });
   }
 });
+
+function getTheCurrentTimeString(){
+  return new Date().toString();
+}
+
+
+app.use("/now", function(req, res, next){
+  req.time = getTheCurrentTimeString()
+  next();
+}, 
+  function(req, res){
+    console.log('time ' + time);
+    res.json({
+      time: req.time
+    });
+  }
+);
