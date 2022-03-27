@@ -2,24 +2,7 @@ var express = require('express');
 const res = require('express/lib/response');
 var app = express();
 require('dotenv').config();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+var bodyParser = require("body-parser");
 
 
 
@@ -30,6 +13,11 @@ app.use(function(req, res, next){
   console.log(req.method + " " + req.path + " - " + req.ip);
   next();
 });
+
+
+app.use(bodyParser.urlencoded({extended: false}));
+
+
 
 
  module.exports = app;
@@ -65,10 +53,3 @@ app.get("/:word/echo", function(req, res){
   });
 });
 
-app.get("/name", function(req, res){
-  var firstName = req.query.first;
-  var lastName = req.query.last;
-  res.json({
-    name: `${firstName} ${lastName}`
-  });
-});
