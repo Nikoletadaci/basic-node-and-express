@@ -58,18 +58,16 @@ app.get("/json", function(req, res) {
   }
 });
 
-function getTheCurrentTimeString(){
-  return new Date().toString();
-}
+var delayInMilliseconds = 1000; //1 second
 
-
-app.use("/now", function(req, res, next){
-  req.time = getTheCurrentTimeString();
-  next();
-}, 
-  function(req, res){
+app.get('/now', (req, res, next) => {
+     req.time = new Date().toString();
+     next()
+}, (req, res) => {
+setTimeout(function() {
+  //your code to be executed after 1 second
     res.json({
       'time': req.time
-    });
-  }
-);
+    })
+}, delayInMilliseconds);
+});
