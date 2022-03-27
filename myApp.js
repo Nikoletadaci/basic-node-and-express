@@ -51,6 +51,7 @@ require('dotenv').config();
  **/
   
 app.get("/json", function(req, res) {
+  console.log(process.env.MESSAGE_STYLE, " <= message style");
   if(process.env.MESSAGE_STYLE === "uppercase") {
     res.json({
       message: "HELLO JSON"
