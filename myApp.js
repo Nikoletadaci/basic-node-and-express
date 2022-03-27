@@ -29,7 +29,7 @@ app.use("/now", function(req, res, next){
 }, 
   function(req, res){
     var time = new Date().toString();
-    console.log('time' + time);
+    console.log('time ' + time);
     res.json({
       'time': time
     });
